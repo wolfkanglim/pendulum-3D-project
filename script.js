@@ -55,7 +55,7 @@ const getFileName = (index) => {
 }
 
 const getURL = (index) => {
-     return `./audios/vibraphone/${getFileName(index)}.mp3`;
+     return `./vibraphone/${getFileName(index)}.mp3`;
 }
 
 const keys = colors.map((color, index) => {
@@ -77,7 +77,7 @@ let scene, camera, renderer, orbitControls;
 let cameraFront, insetWidth, insetHeight;
 
 const textureLoader = new THREE.TextureLoader();
-const space = textureLoader.load('./assets/galaxy1.jpg');
+const space = textureLoader.load('./textures/galaxy1.jpg');
 // stone textures   
 const stoneTextureColor = textureLoader.load('./textures/wall_stone/Wall_Stone_022_basecolor.jpg');
 const stoneTextureRoughness = textureLoader.load('./textures/wall_stone/Wall_Stone_022_roughness.jpg');
