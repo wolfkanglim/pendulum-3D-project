@@ -5,14 +5,35 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Pendulum Three.js</title>
+     <title>Pendulum 3D Angle Music</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" href="./style.css">
+     
 </head>
 <body>
-     <canvas id="canvas1"></canvas>
+     <div class="container">
+          <div id="logo">
+               <img src="./assets/wings23.png" alt="" />
+          </div>
+          
+          <div id="control-bar-wrapper">
+               <div id="control-bar">
+                    <button id="sound-toggle" class="toggle" type="button" data-toggled="false"  title="Toggle Pulse">   
+                         <i class="fa-solid fa-music-slash off">Sound Off</i>
+                         <i class="fa-solid fa-music on">Sound On</i>                     
+                    </button>
+               </div>
+          </div>
+          
+          <div id="sound-message">
+               <p>Click anywhere to toggle sound</p>
+          </div>
+          
+          <canvas id="canvas1"></canvas>
+     </div>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-     <script type="module" src="./script.js"></script>
+     <script type="module" src="./01-script.js"></script>
 </body>
 </html>
