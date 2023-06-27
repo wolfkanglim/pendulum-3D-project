@@ -4,6 +4,81 @@
      box-sizing: border-box;
 }
 body {
-     background-color: #ddd;
+     background-color: hsl(0, 0%, 87%);
      overflow: hidden;
+     height: 100vh;
+     font-family: 'Noto Sans', sans-serif;
+}
+.container {
+     height: 100%;
+     width: 100%;
+     background-color: #333;
+}
+#canvas1 {
+     height: 100vh;
+     width: 100vw;
+}
+#logo {
+     display: flex;
+     position: fixed;
+     left: 2%;
+     top: 2%;
+     pointer-events: none;
+}
+#logo > img {
+     height: 40px;
+     width: 40px;
+}
+#control-bar-wrapper {
+     position: absolute;
+     top: 12%;
+     left: 2%;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     padding: 0.5rem;
+}
+.toggle {
+     background-color: #333;
+     position: fixed;
+     top: 2%;
+     left: 70px;
+     padding: 0.5rem;
+     width: 8rem;
+     border: none;
+     outline: none;
+     cursor: pointer;
+     color: #fff;
+}
+.toggle > i {
+     color: #fff;
+     display: none;
+     height: 1rem;
+     width: 5rem;
+     font-size: 0.8rem;
+     line-height: 1rem;
+     text-align: center;
+}
+.toggle[data-toggled="false"] > i.off{
+     display: block;
+}
+#sound-message {
+     position: fixed;
+     top: 5%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     padding: 0.75rem;
+     background-color: #333;
+     border-radius: 0.4rem;
+     transition: opacity 1000ms;
+     pointer-events: none;
+}
+body:has(#sound-toggle[data-toggled='true']) #sound-message {
+     opacity: 0;
+}
+#sound-message > p {
+     color: #fff;
+     font-size: 1rem;
+     white-space: nowrap;
 }
