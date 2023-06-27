@@ -79,15 +79,15 @@ let cameraFront, insetWidth, insetHeight;
 const textureLoader = new THREE.TextureLoader();
 const space = textureLoader.load('./textures/galaxy1.jpg');
 // stone textures   
-const stoneTextureColor = textureLoader.load('./textures/wall_stone/Wall_Stone_022_basecolor.jpg');
-const stoneTextureRoughness = textureLoader.load('./textures/wall_stone/Wall_Stone_022_roughness.jpg');
-const stoneTextureNormal = textureLoader.load('./textures/wall_stone/Wall_Stone_022_normal.jpg'); 
+const stoneTextureColor = textureLoader.load('./textures/Wall_Stone_022_basecolor.jpg');
+const stoneTextureRoughness = textureLoader.load('./textures/Wall_Stone_022_roughness.jpg');
+const stoneTextureNormal = textureLoader.load('./textures/Wall_Stone_022_normal.jpg'); 
 
 //metal textures
-const metalTextureColor = textureLoader.load('./textures/metal/Metal043A_1K_Color.jpg');
-const metalTextureDisplacement = textureLoader.load('./textures/metal/Metal043A_1K_Displacement.jpg');
-const metalTextureRoughness = textureLoader.load('./textures/metal/Metal043A_1K_Roughness.jpg');
-const metalTextureNormal = textureLoader.load('./textures/metal/Metal043A_1K_NormalGL.jpg');
+const metalTextureColor = textureLoader.load('./textures/Metal043A_1K_Color.jpg');
+const metalTextureDisplacement = textureLoader.load('./textures/Metal043A_1K_Displacement.jpg');
+const metalTextureRoughness = textureLoader.load('./textures/Metal043A_1K_Roughness.jpg');
+const metalTextureNormal = textureLoader.load('./textures/Metal043A_1K_NormalGL.jpg');
 
 const color = new THREE.Color();
 const groupRight = new THREE.Object3D();
