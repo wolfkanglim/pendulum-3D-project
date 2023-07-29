@@ -34,7 +34,7 @@ const getFileName = (index) => {
 }
 
 const getURL = (index) => {
-     return `./audios/vibraphone/${getFileName(index)}.mp3`;
+     return `./audios/bell/${getFileName(index)}.mp3`;
 }
 
 const keys = colors.map((color, index) => {
