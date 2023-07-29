@@ -1,6 +1,5 @@
 import * as THREE from './js/three.module.js';
 import { OrbitControls } from './js/OrbitControls.js';
-//import {FlyControls} from './js/FlyControls.js';
 
 const canvas = document.getElementById('canvas1');
 canvas.width = window.innerWidth;
@@ -11,7 +10,7 @@ const toggles = {
      sound: document.getElementById('sound-toggle'),
 }
 
-///// Color 21
+///// Color 61
 const colors = [
      "#D0E7F5",
      "#D9E7F4",
@@ -33,7 +32,49 @@ const colors = [
      "#FFB6C1",
      "#FED2CF",
      "#FDDFD5",
-     "#FEDCD1"
+     "#FEDCD1",
+          "#D0E7F5",
+     "#D9E7F4",
+     "#D6E3F4",
+     "#BCDFF5",
+     "#B7D9F4",
+     "#C3D4F0",
+     "#9DC1F3",
+     "#9AA9F4",
+     "#8D83EF",
+     "#AE69F0",
+     "#D46FF1",
+     "#DB5AE7",
+     "#D911DA",
+     "#D601CB",
+     "#E713BF",
+     "#F24CAE",
+     "#FB79AB",
+     "#FFB6C1",
+     "#FED2CF",
+     "#FDDFD5",
+     "#FEDCD1",
+          "#D0E7F5",
+     "#D9E7F4",
+     "#D6E3F4",
+     "#BCDFF5",
+     "#B7D9F4",
+     "#C3D4F0",
+     "#9DC1F3",
+     "#9AA9F4",
+     "#8D83EF",
+     "#AE69F0",
+     "#D46FF1",
+     "#DB5AE7",
+     "#D911DA",
+     "#D601CB",
+     "#E713BF",
+     "#F24CAE",
+     "#FB79AB",
+     "#FFB6C1",
+     "#FED2CF",
+     "#FDDFD5",
+     
 ];
 
 let soundEnabled = false;
@@ -57,7 +98,7 @@ const getFileName = index => {
      return `key-${index}`;
 }
 
-const getURL = index => `./audios/vibraphone/${getFileName(index)}.mp3`;
+const getURL = index => `./audios/bell/${getFileName(index)}.mp3`;
 
 const keys = colors.map((color, index) => {
      const audio = new Audio(getURL(index));
@@ -87,16 +128,13 @@ let leftCubes = [];
 
 initThree();
 createLights();
-//createGround();
 createBar();
 createVibraphone();
-//createSpace();
 //cameraMove();
 frontCameraMove();
 
 function initThree(){
      scene = new THREE.Scene();
-     //scene.background = new THREE.Color(0x111111);
      scene.background = space;
      scene.fog = new THREE.Fog(0x555555, 1, 580);
 
@@ -135,16 +173,8 @@ function initThree(){
       orbitControls = new OrbitControls(camera, renderer.domElement);
      orbitControls.enableDamping = true;
      orbitControls.dampingFactor = 0.04; 
+    }
 
-     /* flyCamera = new FlyControls(camera, renderer.domElement);
-     flyCamera.movementSpeed = 25;
-     flyCamera.rollSpeed = Math.PI / 4;
-     flyCamera.autoForward = false;
-     flyCamera.dragToLook = true; */
-
-     const axesHelper = new THREE.AxesHelper(5);
-     //scene.add(axesHelper);
-}
      //camera controls
 function cameraMove(){
      let tl = gsap.timeline({repeat: 4, repeatDelay: 4});
@@ -190,8 +220,6 @@ function frontCameraMove(){
      tl.to(cameraFront.position, {y: 0, duration:4});  
      tl.to(cameraFront.position, {z: 100, duration:6});
 }
-        
-
 
 function createLights(){
      const ambientLight = new THREE.AmbientLight(0xdddddd, 0.5);
@@ -220,10 +248,8 @@ function createSpace(){
      const geometry = new THREE.SphereGeometry(500, 50, 50);
      const material = new THREE.MeshStandardMaterial({
           color: 0xcccccc,
-          //map: space,
           side: THREE.DoubleSide,
-          wireframe: true,
-          
+          wireframe: true,          
      })
      const sphereSpace = new THREE.Mesh(geometry, material);
      sphereSpace.rotation.x = -Math.PI/2;
@@ -250,15 +276,6 @@ function createGround(){
           roughnessMap: stoneTextureRoughness
      }) 
 
-     /* const planeMaterial = new THREE.MeshPhongMaterial({
-          //color: 0xffffff,
-          color: metalTextureColor,
-          displacementMap: metalTextureDisplacement,
-          normalMap: metalTextureNormal,
-          //normalScale: new THREE.Vector2(5, 5),
-          //roughness: 1,
-          roughnessMap: metalTextureRoughness
-     })  */
      const mesh = new THREE.Mesh(planeGeometry, planeMaterial);
      mesh.rotation.x = -Math.PI/2;
      mesh.receiveShadow = true;
@@ -290,7 +307,6 @@ function createVibraphone(){
           cube.position.set(2*i + 9.5, 18 + (i * 1.0125)/2 + 0.9, 0);
           rightCubes.push(cube);
           groupRight.add(cube);  
-
      } 
      
      for(let i = 0; i < 21; i++){
@@ -324,8 +340,7 @@ function createBar(){
      scene.add(stone);
 };
 
- 
-///////////////////
+ ///////////////////
 let radius = 1.1;
 let stringLength = 9;
 let stringWidth = 0.1;
@@ -362,7 +377,6 @@ function createBallMesh(){
      return ball;
 };
 
-
 //////////////////////////////
 class Pendulum {
      constructor(stringMesh, ballMesh, frequency, amplitude){          
@@ -375,11 +389,6 @@ class Pendulum {
           this.string.rotation.z = this.amplitude * Math.cos((this.frequency * deltaTime)/1000);
           this.ball.rotation.z = this.amplitude * Math.cos((this.frequency * deltaTime)/1000);
 
-          //weird pendulum movements
-       /*    this.string.rotation.x= this.amplitude * Math.cos((this.frequency * deltaTime)/1000);
-          this.ball.rotation.x = this.amplitude * Math.cos((this.frequency * deltaTime)/1000);  */
-          
-                
      }
 };
 
@@ -403,9 +412,7 @@ const maxPendulum = 21;
 const pendulums = [];
 
  for(let i = 0; i < maxPendulum; i++){
-     //stringLength = 18 + i;
      stringLength = 9 + (i*2);
-     //stringLength = 51 - (i*2);
      //let frequency = 0.6 + i * 0.0125;
      //let frequency = 0.6 + (i * 0.02);
      let frequency = 1 - (i * 0.02);
@@ -460,7 +467,7 @@ function update(deltaTime){
               
           }  else if(p.ball.rotation.z < -1.5707) {
                if(soundEnabled){
-                    playKey(index);
+                    playKey(index + 24);
                }
                if(pulseEnabled){
                     gsap.to(leftCubes[index].material, {opacity: 1, duration: 0.1}) ; 
@@ -470,8 +477,7 @@ function update(deltaTime){
                }
                
           } 
-     });     
-     
+     });          
 };
 
 animate();
