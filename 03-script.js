@@ -55,7 +55,7 @@ const getFileName = (index) => {
 }
 
 const getURL = (index) => {
-     return `./audios/vibraphone/${getFileName(index)}.mp3`;
+     return `./audios/bell/${getFileName(index)}.mp3`;
 }
 
 const keys = colors.map((color, index) => {
@@ -119,7 +119,6 @@ let rightCubes = [];
 let leftCubes = [];
 
 initThree();
-//createGround();
 createLights();
 createBar();
 createSpace();
@@ -129,8 +128,6 @@ cameraMove();
 function initThree(){
      scene = new THREE.Scene();
      scene.background = new THREE.Color(0x111111);
-     //scene.background = space;
-     //scene.fog = new THREE.Fog(0x555555, 1, 580);
      camera = new THREE.PerspectiveCamera(
           65,
           window.innerWidth/window.innerHeight,
@@ -226,24 +223,6 @@ function createSpace(){
 }
 
 
-
-///// ground
-function createGround(){
-     const planeGeometry = new THREE.PlaneGeometry(150, 150);
-     const planeMaterial = new THREE.MeshStandardMaterial({
-          color: 0x777777,
-          map: metalTextureColor,
-          normalMap: stoneTextureNormal,
-          normalScale: new THREE.Vector2(5, 5),
-          roughness: 1,
-          roughnessMap: stoneTextureRoughness
-     })
-     const mesh = new THREE.Mesh(planeGeometry, planeMaterial);
-     mesh.rotation.x = -Math.PI / 2;
-     mesh.receiveShadow = true,
-     mesh.position.set(0, -21, -10);
-     scene.add(mesh);
-}
 
 function createCube(){
      const geometry = new THREE.BoxGeometry();
