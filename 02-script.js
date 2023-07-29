@@ -55,7 +55,7 @@ const getFileName = (index) => {
 }
 
 const getURL = (index) => {
-     return `./audios/vibraphone/${getFileName(index)}.mp3`;
+     return `./audios/bell/${getFileName(index)}.mp3`;
 }
 
 const keys = colors.map((color, index) => {
@@ -97,10 +97,8 @@ let rightCubes = [];
 let leftCubes = [];
 
 initThree();
-//createGround();
 createLights();
 createBar();
-//createSpace();
 createVibraphone();
 //cameraMove();
 cameraFrontMove();
@@ -385,9 +383,6 @@ for(let i = 0; i < maxPendulum; i++){
      pendulums.push(pendulum);
 }; 
 
-
-
-
 let startTime = null;
 
 function animate(time){
@@ -421,11 +416,9 @@ function animate(time){
 
 function update(totalTime){
           orbitControls.update();
-          //console.log(pendulums[20].ball.rotation.z);
           pendulums.forEach((p, index) => {
                p.update(totalTime);
 
-               //if(p.ball.rotation.z >= 1) {
                if(p.ball.rotation.z >= (0.999 + index * 0.01245)) {
                     if(soundEnabled){
                          playKey(index);
