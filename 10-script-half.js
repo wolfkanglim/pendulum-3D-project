@@ -100,7 +100,7 @@ const getFileName = (index) => {
 }
 
 const getURL = (index) => {
-     return `./audios/nylon/${getFileName(index)}.mp3`;
+     return `./audios/bell/${getFileName(index)}.mp3`;
 }
 
 const keys = colors.map((color, index) => {
@@ -118,7 +118,7 @@ const playKey = (index) => {
 // second instrument
 
 const getURL2 = (index) => {
-     return `./audios/nylon/${getFileName(index)}.mp3`;
+     return `./audios/vibraphone/${getFileName(index)}.mp3`;
 }
 
 const keys2 = colors.map((color, index) => {
@@ -591,7 +591,7 @@ function update(totalTime){
           } 
           else if(p.ball.rotation.z >= 1) {
                if(soundEnabled){
-                   playKey2(index + 36);
+                   playKey(index + 36);
                }
                if(pulseEnabled){
                     
