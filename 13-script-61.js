@@ -112,22 +112,6 @@ const playKey = (index) => {
      keys[index].play();
 }
 
-// second instrument
-
-/* const getURL2 = index => `./audios/bell/${getFileName(index)}.mp3`;
-
-const keys2 = colors.map((color, index) => {
-     const audio = new Audio(getURL2(index));
-     audio.volume = 0.25;
-     audio.currentTime = 0;
-     return audio;
-});
-
-const playKey2 = index => {
-     keys2[index].currentTime = 0;
-     keys2[index].play();
-} */
-
 ////////// THREE //////////////
 
 ///// variables
