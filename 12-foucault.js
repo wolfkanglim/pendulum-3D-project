@@ -10,7 +10,7 @@ const toggles = {
      sound: document.getElementById('sound-toggle')
 }
 
-// 21 colors
+// 61 colors
 const colors = [
      "#D0E7F5",
      "#D9E7F4",
@@ -32,7 +32,47 @@ const colors = [
      "#FFB6C1",
      "#FED2CF",
      "#FDDFD5",
-     "#FEDCD1"
+     "#FEDCD1",
+     "#D0E7F5",
+     "#D9E7F4",
+     "#D6E3F4",
+     "#BCDFF5",
+     "#B7D9F4",
+     "#C3D4F0",
+     "#9DC1F3",
+     "#9AA9F4",
+     "#8D83EF",
+     "#AE69F0",
+     "#D46FF1",
+     "#DB5AE7",
+     "#D911DA",
+     "#D601CB",
+     "#E713BF",
+     "#F24CAE",
+     "#FB79AB",
+     "#FFB6C1",
+     "#FED2CF",
+     "#FDDFD5",
+     "#FEDCD1",
+     "#D0E7F5",
+     "#D9E7F4",
+     "#D6E3F4",
+     "#BCDFF5",
+     "#B7D9F4",
+     "#C3D4F0",
+     "#9DC1F3",
+     "#9AA9F4",
+     "#8D83EF",
+     "#AE69F0",
+     "#D46FF1",
+     "#DB5AE7",
+     "#D911DA",
+     "#D601CB",
+     "#E713BF",
+     "#F24CAE",
+     "#FB79AB",
+     "#FFB6C1",
+     "#FED2CF",
 ];
 
 let soundEnabled = false;
@@ -61,7 +101,7 @@ const getURL = (index) => {
 
 const keys = colors.map((color, index) => {
      const audio = new Audio(getURL(index));
-     audio.currentTime = 0;
+     //audio.currentTime = 0;
      audio.volume = 0.4;
      return audio;
 })
@@ -93,7 +133,7 @@ const groupRing = new THREE.Object3D();
 
 let ballRadius = 10;
 let stringLength = 167;
-let stringWidth = 0.5;
+let stringWidth = 0.35;
 //const maxPendulum = 21;
 let pendulum;
 let count = 0;
@@ -108,6 +148,7 @@ createVibraphone();
 cameraFrontMove();
 //cameraMove();
 createSphere();
+createCompass();
 createSky();
 
 function initThree(){
@@ -122,23 +163,23 @@ function initThree(){
           0.1,
           20000
      )
-     camera.position.set(0, 35, 160);
+     camera.position.set(0, 60, 160);
      camera.lookAt(0, 0, 0);
 
      insetWidth = window.innerHeight * 0.35;
      insetHeight = window.innerHeight * 0.35;
 
      // camera top //
-     cameraTop = new THREE.PerspectiveCamera(70, insetWidth/insetHeight, 1, 500);
-     cameraTop.position.set(0, 165, 6);
-     cameraTop.lookAt(0, 0, -4);
+     cameraTop = new THREE.PerspectiveCamera(65, insetWidth/insetHeight, 1, 500);
+     cameraTop.position.set(0, 170.5, 0);
+     cameraTop.lookAt(0, 0, 0);
      cameraTop.name = 'cameraTop';
      
      //cameraFront
      
      cameraFront = new THREE.PerspectiveCamera( 60, insetWidth / insetHeight,
      1, 500)
-     cameraFront.position.set(0, 5, 50);
+     cameraFront.position.set(0, 25, 195);
      cameraFront.name = 'frontCamera';     
 
      renderer = new THREE.WebGLRenderer({antialias: true, 
@@ -162,54 +203,55 @@ function initThree(){
 function cameraMove(){
      let tl = gsap.timeline({repeat: 4, repeatDelay: 5});
      tl.to(camera.position, {z: 50, delay: 5, duration:12});
-     tl.to(camera.position, {z: 30, duration:6});
-     tl.to(camera.position, {z: 60, duration:6});
-     tl.to(camera.position, {x: -30, duration: 8});
-     tl.to(camera.position, {y: 60, duration: 8});
-     tl.to(camera.position, {x: 38, duration:4});
-     tl.to(camera.position, {x: 1, duration:2});
-     tl.to(camera.position, {z: 0 , duration: 6});
+     tl.to(camera.position, {z: 30, duration:16});
+     tl.to(camera.position, {z: 100, duration:16});
+     tl.to(camera.position, {x: -100, duration: 18});
+     tl.to(camera.position, {y: 60, duration: 18});
+     tl.to(camera.position, {x: 100, duration: 14});
+     tl.to(camera.position, {x: 1, duration: 12});
+     tl.to(camera.position, {z: 0 , duration: 16});
      tl.to(camera.position, {y: 80 , duration: 12});
-     tl.to(camera.position, {x: 10 * 0 , duration: 6});
-     tl.to(camera.position, {z: 58, duration:6}); 
-     tl.to(camera.position, {x: 60, duration:4}); 
-     tl.to(camera.position, {x: -50, duration:6}); 
-     tl.to(camera.position, {x: 1, duration:8});  
-     tl.to(camera.position, {z: 100, duration:4});  
-     tl.to(camera.position, {y: 30, duration:6});  
-     tl.to(camera.position, {z: 0, duration:8});  
-     tl.to(camera.position, {y: 20, duration:4});  
-     tl.to(camera.position, {z: 150, duration:6});
+     tl.to(camera.position, {x: 100 * 0 , duration: 16});
+     tl.to(camera.position, {z: 58, duration:16}); 
+     tl.to(camera.position, {x: 60, duration: 14}); 
+     tl.to(camera.position, {x: -100, duration: 16}); 
+     tl.to(camera.position, {x: 1, duration: 18});  
+     tl.to(camera.position, {z: 100, duration: 14});  
+     tl.to(camera.position, {y: 30, duration: 16});  
+     tl.to(camera.position, {z: 0, duration: 18});  
+     tl.to(camera.position, {y: 20, duration: 14});  
+     tl.to(camera.position, {z: 150, duration: 16});
 }
 //cameraFront controls
 function cameraFrontMove(){
-     let tl = gsap.timeline({repeat: 4, repeatDelay: 5});
-     tl.to(cameraFront.position, {z: 20, delay: 5, duration:12});
-     tl.to(cameraFront.position, {z: 30, duration:6});
-     tl.to(cameraFront.position, {z: 50, duration:6});
-     tl.to(cameraFront.position, {x: -30, duration: 8});
-     tl.to(cameraFront.position, {y: 20, duration: 8});
-     tl.to(cameraFront.position, {x: 28, duration:4});
-     tl.to(cameraFront.position, {x: 0, duration:2});
-     tl.to(cameraFront.position, {z: 20 , duration: 6});
-     tl.to(cameraFront.position, {y: 10 , duration: 12});
-     tl.to(cameraFront.position, {x: 30  , duration: 6});
-     tl.to(cameraFront.position, {z: 18, duration:6}); 
-     tl.to(cameraFront.position, {y: 25, duration:4}); 
-     tl.to(cameraFront.position, {x: 30, duration:4}); 
-     tl.to(cameraFront.position, {x: -30, duration:6}); 
-     tl.to(cameraFront.position, {x: 1, duration:8});  
-     tl.to(cameraFront.position, {z: 20, duration:4});  
-     tl.to(cameraFront.position, {y: 20, duration:6});  
-     tl.to(cameraFront.position, {z: 10, duration:8});  
-     tl.to(cameraFront.position, {y: 20, duration:4});  
-     tl.to(cameraFront.position, {z: 20, duration:6});
+     let tl = gsap.timeline({repeat: 43, repeatDelay: 5});
+     tl.to(cameraFront.position, {y: 30, delay: 5, duration:12});
+     tl.to(cameraFront.position, {z: 30, duration: 16});
+     tl.to(cameraFront.position, {z: 100, duration: 16});
+     tl.to(cameraFront.position, {x: -30, duration: 18});
+     tl.to(cameraFront.position, {y: 20, duration: 18});
+     tl.to(cameraFront.position, {x: 98, duration: 14});
+     tl.to(cameraFront.position, {x: 0, duration: 12});
+     tl.to(cameraFront.position, {x: -90, duration: 12});
+     tl.to(cameraFront.position, {z: 50 , duration: 16});
+     tl.to(cameraFront.position, {y: 40 , duration: 12});
+     tl.to(cameraFront.position, {x: 30  , duration: 16});
+     tl.to(cameraFront.position, {z: 78, duration: 16}); 
+     tl.to(cameraFront.position, {y: 25, duration: 14}); 
+     tl.to(cameraFront.position, {x: 30, duration: 14}); 
+     tl.to(cameraFront.position, {x: -30, duration: 16}); 
+     tl.to(cameraFront.position, {x: 1, duration: 18});  
+     tl.to(cameraFront.position, {z: 50, duration: 14});  
+     tl.to(cameraFront.position, {y: 20, duration: 16});  
+     tl.to(cameraFront.position, {z: 90, duration: 18});  
+     tl.to(cameraFront.position, {y: 0, duration: 14});  
+     tl.to(cameraFront.position, {z: 170, duration: 16});
 }
 
 function createLights(){
-     const ambientLight = new THREE.AmbientLight(0xaaaaaa, 0.5);
+     const ambientLight = new THREE.AmbientLight(0xeeeeee, 0.75);
      scene.add(ambientLight);
-     const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
      dirLight.position.set(5, 50, 15);
      scene.add(dirLight);
      dirLight.castShadow = true;
@@ -223,8 +265,8 @@ function createLights(){
      dirLight.shadow.camera.near = 0.1;
      dirLight.shadow.camera.far = 100;
 
-     const pointLight = new THREE.PointLight(0xffffff, 0.5);
-     pointLight.position.set(0, 20, 25);
+     const pointLight = new THREE.PointLight(0xdddddd, 0.5);
+     pointLight.position.set(0, 60, 2);
      scene.add(pointLight);
 }
 
@@ -248,7 +290,7 @@ function createSky(){
           materialArray[i].side = THREE.BackSide;
      }
 
-     let skyboxGeo = new THREE.BoxGeometry( 20000, 20000, 20000);
+     let skyboxGeo = new THREE.BoxGeometry( 10000, 10000, 10000);
      let skybox = new THREE.Mesh( skyboxGeo, materialArray );
      
      scene.add( skybox );  
@@ -264,6 +306,21 @@ function createSphere(){
      const sphere = new THREE.Mesh(geo, mat);
      sphere.rotation.x = Math.PI/2;
      scene.add(sphere);
+     
+}
+
+function createCompass(){
+     const geo = new THREE.CircleGeometry(65);
+     const mat = new THREE.MeshPhongMaterial({
+          color: 0xaaaaaa,
+          map: textureLoader.load('./textures/Compass-Rose-drawing.png'),
+     })
+     const compass = new THREE.Mesh(geo, mat);
+     compass.rotation.x = -Math.PI/2;
+     compass.castShadow = true;
+     compass.receiveShadow = true;
+     compass.position.y = -50;
+     scene.add(compass);
 }
 
 function createCube(){
@@ -293,7 +350,7 @@ function createTorus(){
      })
      ring = new THREE.Mesh(ringGeo, ringMat);
      ring.rotation.x = -Math.PI / 2;
-     ring.position.y = 167.5;
+     ring.position.y = 178.4;
      ring.castShadow = true;
      ring.receiveShadow = true;
      groupRing.add(ring);
@@ -303,7 +360,7 @@ function createTorus(){
      const topRingGeo = new THREE.TorusGeometry(12.5, 1, 16, 100);
      const topRing = new THREE.Mesh(topRingGeo, ringMat);
      topRing.rotation.x = -Math.PI/2 + Math.PI / 18;
-     topRing.position.y = 172;
+     topRing.position.y = 174;
      topRing.castShadow = true;
      topRing.receiveShadow = true;
      groupRing.add(topRing);
@@ -311,10 +368,10 @@ function createTorus(){
      scene.add(groupRing);
 
      // inner ring
-     const innerRingGeo = new THREE.TorusGeometry(3, 1, 16, 100);
+     const innerRingGeo = new THREE.TorusGeometry(2, 1, 16, 10);
      const innerRing = new THREE.Mesh(innerRingGeo, ringMat);
      innerRing.rotation.x = -Math.PI/2;
-     innerRing.position.y = -25;
+     innerRing.position.y = 169.5;
      innerRing.castShadow = true;
      innerRing.receiveShadow = true;
      scene.add(innerRing);
@@ -322,7 +379,7 @@ function createTorus(){
      //outerRing
      const outerRingGeo = new THREE.TorusGeometry(92.75, 0.5, 16, 100);
      const outerRing = new THREE.Mesh(outerRingGeo, ringMat);
-     outerRing.position.y = 1;
+     outerRing.position.y = 0;
      outerRing.rotation.x = -Math.PI/2;
      outerRing.castShadow = true;
      outerRing.receiveShadow = true;
@@ -332,11 +389,11 @@ function createTorus(){
 
 ///// Vibraphone right(outer-hidden/left(inner)
 function createVibraphone(){
-     for(let i = 0; i < 360; i++){
+     for(let i = 0; i < 720; i++){
           const cube = createCube();
           cube.material.color = new THREE.Color(colors[i % 21]);
-          cube.scale.set(0.5, 10, 1.25);
-          let angle = Math.PI * 2 / 360;
+          cube.scale.set(0.5, 10, 0.625);
+          let angle = Math.PI * 2 / 720;
           let radius = 92.5;
           cube.position.x = radius * Math.cos(angle * i);
           cube.position.z = radius * Math.sin(angle * i);
@@ -344,7 +401,7 @@ function createVibraphone(){
           cube.rotation.y = -angle * i;
           rightCubes.push(cube);
           groupOuter.add(cube);
-          groupOuter.position.set(0, 2, 0);
+          groupOuter.position.set(0, 0, 0);
      }
      scene.add(groupOuter);
 
@@ -371,7 +428,7 @@ function createVibraphone(){
 ///// pendulum string mesh / ball mesh
 
 function createStringMesh(){
-     const geometry = new THREE.CylinderGeometry(stringWidth, stringWidth, stringLength);
+     const geometry = new THREE.CylinderGeometry(0.7 * stringWidth, stringWidth, stringLength);
      const material = new THREE.MeshStandardMaterial({
           color: 0xeeffee,
 
@@ -405,7 +462,7 @@ function createBallMesh(){
 
 function createHookMesh(){
       //ball cylinder cube
-     const cylGeo = new THREE.CylinderGeometry(2, 0.5, 10);
+     const cylGeo = new THREE.CylinderGeometry(3, 0.1, 12);
      const material = new THREE.MeshStandardMaterial({
           //color: 0xaaaaaa,
           map: metalTextureColor,
@@ -437,31 +494,43 @@ class Pendulum {
           this.ball.rotation.z = this.amplitude * Math.cos((this.frequency * totalTime)/1000);
           this.hook.rotation.z = this.amplitude * Math.cos((this.frequency * totalTime)/1000);
           
-        
+          //23hrs 56min 1sec = 86161 seconds, 360/86161 = 0.00417822448 deg
           //rotation by angle    
-         this.string.rotation.y = -Math.PI * 2.71/360 * totalTime / 10000;       
-          this.ball.rotation.y = -Math.PI * 2.71/360 * totalTime / 10000;
-          this.hook.rotation.y = -Math.PI * 2.71/360 * totalTime / 10000; 
+          this.string.rotation.y += -Math.PI * 0.432 / 86161;       
+          this.ball.rotation.y += -Math.PI * 0.432 / 86161;  
+          this.hook.rotation.y += -Math.PI * 0.432 / 86161;    
+
+         /* this.string.rotation.y = -0.005 * totalTime / 10000;       
+          this.ball.rotation.y = -0.005* totalTime / 10000;
+          this.hook.rotation.y = -0.005  * totalTime / 10000;  */
+
+        /*  this.string.rotation.y = -Math.PI * 1/360 * totalTime / 10000;       
+          this.ball.rotation.y = -Math.PI * 1/360 * totalTime / 10000;
+          this.hook.rotation.y = -Math.PI * 1/360 * totalTime / 10000;  */
      }
 };
 //console.log(Math.sin(45.47 * Math.PI/180) * 67);
 function createPendulum(origin, frequency, amplitude, a){
      const stringMesh = createStringMesh();
      stringMesh.position.add(origin);
+     stringMesh.rotation.y = a;
      stringMesh.translateY(stringLength);
      stringMesh.geometry.translate(0, -(stringLength * 0.5), 0);
 
      const ballMesh = createBallMesh();
      ballMesh.position.add(origin);
+     ballMesh.rotation.y = a;
      ballMesh.translateY(stringLength);
      ballMesh.geometry.translate(0, -stringLength, 0);
 
      const hookMesh = createHookMesh();
      hookMesh.position.add(origin);
+     hookMesh.rotation.y = a;
      hookMesh.translateY(stringLength);
      hookMesh.geometry.translate(0, -stringLength - 14, 0);
 
      const p = new Pendulum(stringMesh, ballMesh, hookMesh, frequency, amplitude, a);
+     
      return p; //a is for angle positions
 };
 
@@ -474,7 +543,7 @@ function createPendulum(origin, frequency, amplitude, a){
      let posX = radius * Math.cos(Math.PI/180);
      let posZ = radius * Math.sin(Math.PI/180);
 
-     pendulum = createPendulum(new THREE.Vector3(0, 0, 0), 0.0125 + 1,  Math.PI / 6);
+     pendulum = createPendulum(new THREE.Vector3(0, 0, 0), 0.0125 + 0.51,  Math.PI / 6 + 0.0001, 0);
   //   pendulums.push(pendulum);
 //}
 
@@ -518,32 +587,36 @@ function update(totalTime){
 
      
      
-                 if(pendulum.ball.rotation.z <= -0.52) {   
+          if(pendulum.ball.rotation.z <= -0.52315) {   
               if(soundEnabled){
 
-                   playKey(14);           
+                   playKey(Math.floor(count) % 61);           
               }
-                if(pulseEnabled){                    
-                    gsap.to(ring.material, {opacity: 1, duration: 0.5}) ; 
-                    gsap.to(ring.material, {opacity: 0.5, duration: 0.5}) ; 
+                if(pulseEnabled){  
+                    gsap.to(rightCubes[Math.floor(count) + 720].rotation, {z: -Math.PI/2, duration: 0.751, ease: 'power3'}) ;                  
+                    //gsap.to(ring.material, {opacity: 1, duration: 0.5}) ; 
+                    gsap.to(rightCubes[Math.floor(count) + 720].rotation, {z: 0, delay: 1500, duration: 500}) ;  
+                    //gsap.to(ring.material, {opacity: 0.5, duration: 0.5}) ; 
                } 
           } 
-          else if(pendulum.ball.rotation.z >= 0.52) {
+          else if(pendulum.ball.rotation.z >= 0.52315) {
               
                if(soundEnabled){
-                    playKey(20);
+                    playKey(Math.floor(count + 1) % 61);
                }
                 if(pulseEnabled){
                     
-                    gsap.to(rightCubes[Math.floor(count)].rotation, {z: -Math.PI/2, duration: 0.51, ease: 'power3'}) ;
+                    gsap.to(rightCubes[Math.floor(count)].rotation, {z: -Math.PI/2, duration: 0.751, ease: 'power3'}) ;
                     gsap.to(rightCubes[Math.floor(count)].material, {opacity: 1, duration: 0.5}) ; 
-                    gsap.to(rightCubes[Math.floor(count)].rotation, {z: 0, delay: 300, duration: 120}) ;  
+                    gsap.to(rightCubes[Math.floor(count)].rotation, {z: 0, delay: 1500, duration: 500}) ;  
                     gsap.to(rightCubes[Math.floor(count)].material, {opacity: 0.8, duration: 1}) ; 
                     count += 1/4;
                }
           } 
          // console.log(pendulum.ball.rotation.y);
-     
+
+         
+      
    
      
 };
